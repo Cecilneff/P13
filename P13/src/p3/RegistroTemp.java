@@ -3,6 +3,7 @@ package p3;
 import java.io.IOException;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -32,14 +33,15 @@ public class RegistroTemp extends HttpServlet {
 		// TODO Auto-generated method stub
 		response.getWriter().append("Served at: ").append(request.getContextPath());
 		HttpSession sesion = request.getSession(true);
-		String uID=request.getParameter("DNI");
-		//Cookie c = Cookie("idCookie",uID);
+		String idCookie=request.getParameter("DNI");
+		Cookie c = new Cookie("idCookie",idCookie);
+		c.setMaxAge(30);
+		c.setPath("/");
+		c.setDomain("TelodigoaTI");
+		response.addCookie(c);
+		}
 		
 		
-		
-		
-	}
-
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
